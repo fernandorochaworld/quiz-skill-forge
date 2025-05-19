@@ -1,0 +1,255 @@
+{
+    "topic": "Excel",
+    "questions": [
+        {
+            "id": "excel-1",
+            "text": "What is the correct syntax for the VLOOKUP function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])"
+                },
+                {
+                    "id": "b",
+                    "text": "VLOOKUP(table_array, lookup_value, col_index_num, [range_lookup])"
+                },
+                {
+                    "id": "c",
+                    "text": "VLOOKUP(lookup_value, col_index_num, table_array, [range_lookup])"
+                },
+                {
+                    "id": "d",
+                    "text": "VLOOKUP(col_index_num, lookup_value, table_array, [range_lookup])"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The VLOOKUP function syntax is VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup]). The lookup_value is what you're searching for, table_array is where to search, col_index_num is which column to return, and range_lookup is optional for exact or approximate match."
+        },
+        {
+            "id": "excel-2",
+            "text": "Which of the following is NOT a valid Excel date format?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "DD/MM/YYYY HH:MM:SS"
+                },
+                {
+                    "id": "b",
+                    "text": "MM/DD/YYYY"
+                },
+                {
+                    "id": "c",
+                    "text": "YYYY-MM-DD"
+                },
+                {
+                    "id": "d",
+                    "text": "DD-MM-YYYY"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The format 'DD/MM/YYYY HH:MM:SS' is incorrect because Excel uses 'HH:MM:SS' for time, not 'HH:MM:SS'. The correct format would be 'DD/MM/YYYY HH:MM:SS'."
+        },
+        {
+            "id": "excel-3",
+            "text": "What is the purpose of the INDEX function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To return a value from a specific position in a range"
+                },
+                {
+                    "id": "b",
+                    "text": "To find the position of a value in a range"
+                },
+                {
+                    "id": "c",
+                    "text": "To create an index for a table"
+                },
+                {
+                    "id": "d",
+                    "text": "To sort data in a range"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The INDEX function returns a value from a specific position in a range. It's often used in combination with MATCH to create powerful lookup formulas."
+        },
+        {
+            "id": "excel-4",
+            "text": "Which of the following is true about Excel's IF function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "It can be nested up to 64 levels deep"
+                },
+                {
+                    "id": "b",
+                    "text": "It can only be used with text values"
+                },
+                {
+                    "id": "c",
+                    "text": "It cannot be combined with other functions"
+                },
+                {
+                    "id": "d",
+                    "text": "It can only return text values"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The IF function in Excel can be nested up to 64 levels deep, allowing for complex conditional logic. It can work with any type of data and can be combined with other functions."
+        },
+        {
+            "id": "excel-5",
+            "text": "What is the purpose of the SUMIF function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To sum values that meet specific criteria"
+                },
+                {
+                    "id": "b",
+                    "text": "To count cells that meet specific criteria"
+                },
+                {
+                    "id": "c",
+                    "text": "To find the average of values that meet specific criteria"
+                },
+                {
+                    "id": "d",
+                    "text": "To find the maximum value that meets specific criteria"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The SUMIF function adds up values in a range that meet specific criteria. It's useful for conditional summing based on a single condition."
+        },
+        {
+            "id": "excel-6",
+            "text": "Which of the following is NOT a valid Excel chart type?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "3D Pie Chart"
+                },
+                {
+                    "id": "b",
+                    "text": "Line Chart"
+                },
+                {
+                    "id": "c",
+                    "text": "Bar Chart"
+                },
+                {
+                    "id": "d",
+                    "text": "Scatter Plot"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "While Excel does have 3D charts, '3D Pie Chart' is not a standard chart type. Excel offers 3D Column, 3D Line, and 3D Surface charts, but not specifically a 3D Pie Chart."
+        },
+        {
+            "id": "excel-7",
+            "text": "What is the purpose of the CONCATENATE function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To join multiple text strings into one"
+                },
+                {
+                    "id": "b",
+                    "text": "To split text into multiple cells"
+                },
+                {
+                    "id": "c",
+                    "text": "To find text within a cell"
+                },
+                {
+                    "id": "d",
+                    "text": "To replace text in a cell"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The CONCATENATE function joins multiple text strings into one. It's useful for combining text from different cells or adding text to existing content."
+        },
+        {
+            "id": "excel-8",
+            "text": "What is the purpose of the PivotTable?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To summarize and analyze large amounts of data"
+                },
+                {
+                    "id": "b",
+                    "text": "To create charts"
+                },
+                {
+                    "id": "c",
+                    "text": "To sort data"
+                },
+                {
+                    "id": "d",
+                    "text": "To format cells"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "PivotTables are used to summarize and analyze large amounts of data. They allow you to extract significance from a large, detailed data set by grouping and aggregating data in different ways."
+        },
+        {
+            "id": "excel-9",
+            "text": "What is the purpose of the COUNTIF function?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To count cells that meet specific criteria"
+                },
+                {
+                    "id": "b",
+                    "text": "To sum values that meet specific criteria"
+                },
+                {
+                    "id": "c",
+                    "text": "To find the average of values that meet specific criteria"
+                },
+                {
+                    "id": "d",
+                    "text": "To find the maximum value that meets specific criteria"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The COUNTIF function counts the number of cells in a range that meet specific criteria. It's useful for counting occurrences of specific values or conditions."
+        },
+        {
+            "id": "excel-10",
+            "text": "What is the purpose of the Data Validation feature?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To control what data can be entered into a cell"
+                },
+                {
+                    "id": "b",
+                    "text": "To validate data after it's entered"
+                },
+                {
+                    "id": "c",
+                    "text": "To clean up data"
+                },
+                {
+                    "id": "d",
+                    "text": "To format data"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Data Validation is a feature that allows you to control what data can be entered into a cell. It can restrict input to specific types, ranges, or values, helping to maintain data integrity."
+        }
+    ]
+}

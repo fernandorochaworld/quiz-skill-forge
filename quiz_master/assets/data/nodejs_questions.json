@@ -1,0 +1,255 @@
+{
+    "topic": "Node.js",
+    "questions": [
+        {
+            "id": "node-1",
+            "text": "What is the purpose of the Node.js event loop?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To handle asynchronous operations in a non-blocking way"
+                },
+                {
+                    "id": "b",
+                    "text": "To create infinite loops in applications"
+                },
+                {
+                    "id": "c",
+                    "text": "To manage memory allocation"
+                },
+                {
+                    "id": "d",
+                    "text": "To handle database connections"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The event loop is a mechanism that allows Node.js to perform non-blocking I/O operations despite JavaScript being single-threaded. It handles asynchronous operations by offloading operations to the system kernel whenever possible."
+        },
+        {
+            "id": "node-2",
+            "text": "Which of the following is NOT a core module in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "http"
+                },
+                {
+                    "id": "b",
+                    "text": "fs"
+                },
+                {
+                    "id": "c",
+                    "text": "express"
+                },
+                {
+                    "id": "d",
+                    "text": "path"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "Express is not a core module in Node.js. It's a popular third-party web application framework. Core modules like http, fs, and path come built-in with Node.js installation."
+        },
+        {
+            "id": "node-3",
+            "text": "What is the purpose of the 'process' object in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To provide information about, and control over, the current Node.js process"
+                },
+                {
+                    "id": "b",
+                    "text": "To handle HTTP requests"
+                },
+                {
+                    "id": "c",
+                    "text": "To manage database connections"
+                },
+                {
+                    "id": "d",
+                    "text": "To create new processes"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The process object is a global that provides information about, and control over, the current Node.js process. It's available in all modules and can be used to access environment variables, command line arguments, and more."
+        },
+        {
+            "id": "node-4",
+            "text": "What is the correct way to handle errors in Node.js streams?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Using the 'error' event listener"
+                },
+                {
+                    "id": "b",
+                    "text": "Using try-catch blocks"
+                },
+                {
+                    "id": "c",
+                    "text": "Using the 'catch' method"
+                },
+                {
+                    "id": "d",
+                    "text": "Using the 'onError' callback"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "In Node.js streams, errors should be handled using the 'error' event listener. This is because streams are event emitters, and errors are emitted as events rather than thrown as exceptions."
+        },
+        {
+            "id": "node-5",
+            "text": "What is the purpose of the 'Buffer' class in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To handle binary data"
+                },
+                {
+                    "id": "b",
+                    "text": "To manage memory allocation"
+                },
+                {
+                    "id": "c",
+                    "text": "To handle HTTP requests"
+                },
+                {
+                    "id": "d",
+                    "text": "To create temporary files"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The Buffer class in Node.js is used to handle binary data. It's a way to work with streams of binary data, which is common when dealing with files, network protocols, or other I/O operations."
+        },
+        {
+            "id": "node-6",
+            "text": "Which of the following is true about Node.js streams?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "They can be readable, writable, or both"
+                },
+                {
+                    "id": "b",
+                    "text": "They can only be readable"
+                },
+                {
+                    "id": "c",
+                    "text": "They can only be writable"
+                },
+                {
+                    "id": "d",
+                    "text": "They can only be used for file operations"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Node.js streams can be readable, writable, or both (duplex). This flexibility allows for efficient handling of data in various scenarios, such as file operations, network requests, or data processing."
+        },
+        {
+            "id": "node-7",
+            "text": "What is the purpose of the 'cluster' module in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To create child processes that share server ports"
+                },
+                {
+                    "id": "b",
+                    "text": "To manage database clusters"
+                },
+                {
+                    "id": "c",
+                    "text": "To handle HTTP requests"
+                },
+                {
+                    "id": "d",
+                    "text": "To create worker threads"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The cluster module allows you to create child processes (workers) that share server ports. This enables you to take advantage of multiple CPU cores and improve the performance of your Node.js application."
+        },
+        {
+            "id": "node-8",
+            "text": "What is the purpose of the 'crypto' module in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To provide cryptographic functionality"
+                },
+                {
+                    "id": "b",
+                    "text": "To handle database encryption"
+                },
+                {
+                    "id": "c",
+                    "text": "To manage user authentication"
+                },
+                {
+                    "id": "d",
+                    "text": "To create secure HTTP connections"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The crypto module provides cryptographic functionality that includes a set of wrappers for OpenSSL's hash, HMAC, cipher, decipher, sign, and verify functions."
+        },
+        {
+            "id": "node-9",
+            "text": "What is the purpose of the 'util' module in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To provide utility functions"
+                },
+                {
+                    "id": "b",
+                    "text": "To handle HTTP requests"
+                },
+                {
+                    "id": "c",
+                    "text": "To manage file operations"
+                },
+                {
+                    "id": "d",
+                    "text": "To create web servers"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The util module provides utility functions that are helpful for debugging and formatting. It includes functions for inheritance, type checking, and formatting objects."
+        },
+        {
+            "id": "node-10",
+            "text": "What is the purpose of the 'os' module in Node.js?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To provide operating system-related utility methods"
+                },
+                {
+                    "id": "b",
+                    "text": "To handle file system operations"
+                },
+                {
+                    "id": "c",
+                    "text": "To manage network connections"
+                },
+                {
+                    "id": "d",
+                    "text": "To create system processes"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The os module provides operating system-related utility methods and properties. It can be used to get information about the operating system, such as platform, architecture, and memory usage."
+        }
+    ]
+}

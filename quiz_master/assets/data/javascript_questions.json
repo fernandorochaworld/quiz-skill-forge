@@ -1,0 +1,255 @@
+{
+    "topic": "JavaScript",
+    "questions": [
+        {
+            "id": "js-1",
+            "text": "What is the output of the following code?\n\nconst obj = { a: 1, b: 2 };\nconst { a, ...rest } = obj;\nconsole.log(rest);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "{ b: 2 }"
+                },
+                {
+                    "id": "b",
+                    "text": "{ a: 1, b: 2 }"
+                },
+                {
+                    "id": "c",
+                    "text": "{ }"
+                },
+                {
+                    "id": "d",
+                    "text": "undefined"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The rest operator (...) collects all remaining enumerable properties into a new object. In this case, after destructuring 'a', the remaining property 'b' is collected into the 'rest' object."
+        },
+        {
+            "id": "js-2",
+            "text": "Which of the following is NOT a valid way to create a Promise?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "new Promise((resolve, reject) => {})"
+                },
+                {
+                    "id": "b",
+                    "text": "Promise.resolve()"
+                },
+                {
+                    "id": "c",
+                    "text": "Promise.reject()"
+                },
+                {
+                    "id": "d",
+                    "text": "Promise.create()"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Promise.create() is not a valid method. The standard ways to create a Promise are using the constructor (new Promise()), Promise.resolve(), or Promise.reject()."
+        },
+        {
+            "id": "js-3",
+            "text": "What is the output of the following code?\n\nconst arr = [1, 2, 3];\nconst [first, ...rest] = arr;\nconsole.log(rest);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "[2, 3]"
+                },
+                {
+                    "id": "b",
+                    "text": "[1, 2, 3]"
+                },
+                {
+                    "id": "c",
+                    "text": "[1]"
+                },
+                {
+                    "id": "d",
+                    "text": "undefined"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The rest operator (...) in array destructuring collects all remaining elements into a new array. After destructuring 'first', the remaining elements [2, 3] are collected into the 'rest' array."
+        },
+        {
+            "id": "js-4",
+            "text": "Which of the following is true about async/await?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "async functions always return a Promise"
+                },
+                {
+                    "id": "b",
+                    "text": "await can only be used inside async functions"
+                },
+                {
+                    "id": "c",
+                    "text": "Both a and b"
+                },
+                {
+                    "id": "d",
+                    "text": "Neither a nor b"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "Async functions always return a Promise, and the await keyword can only be used inside async functions. This is part of the async/await syntax that makes asynchronous code more readable."
+        },
+        {
+            "id": "js-5",
+            "text": "What is the output of the following code?\n\nconst obj = { a: 1 };\nObject.freeze(obj);\nobj.a = 2;\nconsole.log(obj.a);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "1"
+                },
+                {
+                    "id": "b",
+                    "text": "2"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Object.freeze() makes an object immutable. Attempting to modify a frozen object's properties will fail silently in non-strict mode or throw an error in strict mode. The original value remains unchanged."
+        },
+        {
+            "id": "js-6",
+            "text": "Which of the following is NOT a valid way to handle errors in async/await?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "try/catch block"
+                },
+                {
+                    "id": "b",
+                    "text": ".catch() method"
+                },
+                {
+                    "id": "c",
+                    "text": "error event listener"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above are valid"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "Error event listeners are used for handling errors in event-driven programming, not specifically for async/await error handling. The valid ways to handle errors in async/await are try/catch blocks and .catch() methods on Promises."
+        },
+        {
+            "id": "js-7",
+            "text": "What is the output of the following code?\n\nconst arr = [1, 2, 3];\nconst [a, b, c, d = 4] = arr;\nconsole.log(d);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "4"
+                },
+                {
+                    "id": "b",
+                    "text": "undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "null"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "In array destructuring, you can provide default values for elements that don't exist in the array. Since there is no fourth element in the array, the default value of 4 is used for 'd'."
+        },
+        {
+            "id": "js-8",
+            "text": "Which of the following is true about the 'this' keyword in arrow functions?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "It inherits 'this' from the enclosing scope"
+                },
+                {
+                    "id": "b",
+                    "text": "It creates its own 'this' binding"
+                },
+                {
+                    "id": "c",
+                    "text": "It always refers to the global object"
+                },
+                {
+                    "id": "d",
+                    "text": "It cannot be used in arrow functions"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Arrow functions do not have their own 'this' binding. Instead, they inherit 'this' from the enclosing scope where they are defined. This is one of the key differences between arrow functions and regular functions."
+        },
+        {
+            "id": "js-9",
+            "text": "What is the output of the following code?\n\nconst obj = { a: 1, b: 2 };\nconst { a: x, b: y } = obj;\nconsole.log(x, y);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "1 2"
+                },
+                {
+                    "id": "b",
+                    "text": "a b"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "In object destructuring, you can rename properties using the syntax { propertyName: newName }. Here, 'a' is renamed to 'x' and 'b' is renamed to 'y', so x gets the value of obj.a (1) and y gets the value of obj.b (2)."
+        },
+        {
+            "id": "js-10",
+            "text": "Which of the following is NOT a valid way to create a deep copy of an object?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "JSON.parse(JSON.stringify(obj))"
+                },
+                {
+                    "id": "b",
+                    "text": "Object.assign({}, obj)"
+                },
+                {
+                    "id": "c",
+                    "text": "structuredClone(obj)"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above are valid"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Object.assign() creates a shallow copy, not a deep copy. It only copies the top-level properties. For nested objects, the references are copied, not the values. The other methods (JSON.parse/stringify and structuredClone) create deep copies."
+        }
+    ]
+}
