@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '../../domain/entities/topic.dart';
+import '../../domain/entities/user_progress.dart';
 import '../pages/quiz_page.dart';
 
 class TopicCard extends StatelessWidget {
   final Topic topic;
+  final UserProgress? progress;
 
   const TopicCard({
     super.key,
     required this.topic,
+    this.progress,
   });
 
   @override
@@ -65,6 +68,31 @@ class TopicCard extends StatelessWidget {
                         ),
                       ],
                     ),
+                    if (progress != null) ...[
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.score,
+                            size: 14,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            'Last Score: ${(progress!.accuracy * 100).toStringAsFixed(1)}%',
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        'Last Attempt: ${_formatDate(progress!.lastAttempt)}',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -80,6 +108,10 @@ class TopicCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
   }
 
   Widget _buildTopicImage(String imageUrl) {

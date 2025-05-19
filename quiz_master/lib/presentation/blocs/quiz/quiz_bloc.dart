@@ -1,12 +1,17 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../domain/entities/quiz_question.dart';
+import '../../../domain/entities/user_progress.dart';
+import '../../../domain/repositories/quiz_repository.dart';
 import 'quiz_event.dart';
 import 'quiz_state.dart';
 
 class QuizBloc extends Bloc<QuizEvent, QuizState> {
-  QuizBloc() : super(QuizInitial()) {
+  final QuizRepository _repository;
+
+  QuizBloc(this._repository) : super(QuizInitial()) {
     on<LoadQuiz>(_onLoadQuiz);
     on<AnswerQuestion>(_onAnswerQuestion);
     on<NextQuestion>(_onNextQuestion);
@@ -41,6 +46,14 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       final questions = (jsonData['questions'] as List)
           .map((q) => QuizQuestion.fromJson(q))
           .toList();
+
+      // Randomize questions
+      questions.shuffle();
+
+      // Randomize options for each question
+      for (var question in questions) {
+        question.options.shuffle();
+      }
 
       emit(QuizLoaded(
         questions: questions,
@@ -111,22 +124,38 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
   void _onCompleteQuiz(
     CompleteQuiz event,
     Emitter<QuizState> emit,
-  ) {
+  ) async {
     if (state is QuizLoaded) {
       final currentState = state as QuizLoaded;
       int correctAnswers = 0;
+      final wrongAnswers = <QuizQuestion>[];
 
       for (final question in currentState.questions) {
         final userAnswer = currentState.userAnswers[question.id];
         if (userAnswer == question.correctAnswer) {
           correctAnswers++;
+        } else {
+          wrongAnswers.add(question);
         }
       }
+
+      final score = correctAnswers / currentState.questions.length;
+      
+      // Save the progress
+      final progress = UserProgress(
+        topicId: event.topicId,
+        questionsAttempted: currentState.questions.length,
+        correctAnswers: correctAnswers,
+        lastAttempt: DateTime.now(),
+      );
+      
+      await _repository.saveUserProgress(progress);
 
       emit(QuizCompleted(
         questions: currentState.questions,
         userAnswers: currentState.userAnswers,
         correctAnswers: correctAnswers,
+        wrongAnswers: wrongAnswers,
       ));
     }
   }

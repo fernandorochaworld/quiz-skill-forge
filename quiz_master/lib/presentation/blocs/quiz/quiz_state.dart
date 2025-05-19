@@ -66,15 +66,17 @@ class QuizCompleted extends QuizState {
   final List<QuizQuestion> questions;
   final Map<String, String> userAnswers;
   final int correctAnswers;
+  final List<QuizQuestion> wrongAnswers;
 
   const QuizCompleted({
     required this.questions,
     required this.userAnswers,
     required this.correctAnswers,
+    required this.wrongAnswers,
   });
 
   double get score => correctAnswers / questions.length;
 
   @override
-  List<Object?> get props => [questions, userAnswers, correctAnswers];
+  List<Object?> get props => [questions, userAnswers, correctAnswers, wrongAnswers];
 } 

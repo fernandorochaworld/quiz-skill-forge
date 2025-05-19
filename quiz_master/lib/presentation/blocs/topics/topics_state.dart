@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import '../../../domain/entities/topic.dart';
+import '../../../domain/entities/user_progress.dart';
 
 abstract class TopicsState extends Equatable {
   const TopicsState();
@@ -14,11 +15,15 @@ class TopicsLoading extends TopicsState {}
 
 class TopicsLoaded extends TopicsState {
   final List<Topic> topics;
+  final Map<String, UserProgress> progress;
 
-  const TopicsLoaded(this.topics);
+  const TopicsLoaded({
+    required this.topics,
+    required this.progress,
+  });
 
   @override
-  List<Object?> get props => [topics];
+  List<Object?> get props => [topics, progress];
 }
 
 class TopicsError extends TopicsState {

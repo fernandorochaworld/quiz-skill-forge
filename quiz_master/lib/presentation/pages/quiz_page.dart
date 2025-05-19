@@ -5,6 +5,7 @@ import '../blocs/quiz/quiz_event.dart';
 import '../blocs/quiz/quiz_state.dart';
 import '../../domain/entities/topic.dart';
 import '../../domain/entities/quiz_question.dart';
+import '../../domain/repositories/quiz_repository.dart';
 
 class QuizPage extends StatelessWidget {
   final Topic topic;
@@ -17,7 +18,9 @@ class QuizPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuizBloc()..add(LoadQuiz(topic.id)),
+      create: (context) => QuizBloc(
+        context.read<QuizRepository>(),
+      )..add(LoadQuiz(topic.id)),
       child: BlocBuilder<QuizBloc, QuizState>(
         builder: (context, state) {
           if (state is QuizLoading) {
@@ -131,7 +134,7 @@ class QuizPage extends StatelessWidget {
                         if (state.isLastQuestion)
                           ElevatedButton(
                             onPressed: () {
-                              context.read<QuizBloc>().add(CompleteQuiz());
+                              context.read<QuizBloc>().add(CompleteQuiz(topic.id));
                             },
                             child: const Text('Finish Quiz'),
                           )
@@ -153,19 +156,63 @@ class QuizPage extends StatelessWidget {
           } else if (state is QuizCompleted) {
             return Scaffold(
               appBar: AppBar(title: Text(topic.name)),
-              body: Center(
+              body: SingleChildScrollView(
+                padding: const EdgeInsets.all(16),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
                       'Quiz Completed!',
                       style: Theme.of(context).textTheme.headlineMedium,
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       'Score: ${(state.score * 100).toStringAsFixed(1)}%',
                       style: Theme.of(context).textTheme.titleLarge,
+                      textAlign: TextAlign.center,
                     ),
+                    if (state.wrongAnswers.isNotEmpty) ...[
+                      const SizedBox(height: 24),
+                      Text(
+                        'Review Wrong Answers:',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      const SizedBox(height: 16),
+                      ...state.wrongAnswers.map((question) => Card(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                question.text,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Your Answer: ${state.userAnswers[question.id]}',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Colors.red,
+                                ),
+                              ),
+                              Text(
+                                'Correct Answer: ${question.correctAnswer}',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Colors.green,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Explanation: ${question.explanation}',
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                        ),
+                      )),
+                    ],
                     const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {

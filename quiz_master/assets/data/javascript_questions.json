@@ -1,5 +1,6 @@
 {
-    "topic": "JavaScript",
+    "topic": "Advanced JavaScript",
+    "description": "A comprehensive questionnaire covering advanced JavaScript concepts including closures, prototypes, asynchronous programming, ES6+ features, memory management, design patterns, and modern JavaScript frameworks. These questions are designed to test deep understanding of JavaScript's inner workings, best practices, and complex scenarios that senior developers encounter.",
     "questions": [
         {
             "id": "js-1",
@@ -250,6 +251,556 @@
             ],
             "correctAnswer": "b",
             "explanation": "Object.assign() creates a shallow copy, not a deep copy. It only copies the top-level properties. For nested objects, the references are copied, not the values. The other methods (JSON.parse/stringify and structuredClone) create deep copies."
+        },
+        {
+            "id": "js-11",
+            "text": "What is the output of the following code?\n\nfunction* generator() {\n  yield 1;\n  yield 2;\n  return 3;\n}\n\nconst gen = generator();\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);\nconsole.log(gen.next().value);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "1, 2, 3"
+                },
+                {
+                    "id": "b",
+                    "text": "1, 2, undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined, undefined, undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The generator function yields 1, then 2, then returns 3. The next() method returns an object with a value property. The first two calls get the yielded values, and the third call gets the returned value."
+        },
+        {
+            "id": "js-12",
+            "text": "What is the purpose of the WeakMap in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To store key-value pairs where keys are weakly referenced"
+                },
+                {
+                    "id": "b",
+                    "text": "To create a map with limited size"
+                },
+                {
+                    "id": "c",
+                    "text": "To store only string keys"
+                },
+                {
+                    "id": "d",
+                    "text": "To create a sorted map"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "WeakMap stores key-value pairs where the keys are weakly referenced, meaning if there are no other references to the key object, it can be garbage collected. Example: const wm = new WeakMap(); const obj = {}; wm.set(obj, 'value');"
+        },
+        {
+            "id": "js-13",
+            "text": "What is the output of the following code?\n\nconst obj = {};\nObject.defineProperty(obj, 'prop', {\n  value: 42,\n  writable: false\n});\nobj.prop = 33;\nconsole.log(obj.prop);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "42"
+                },
+                {
+                    "id": "b",
+                    "text": "33"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Object.defineProperty() with writable: false makes the property non-writable. Attempting to change it fails silently in non-strict mode, so the original value 42 remains."
+        },
+        {
+            "id": "js-14",
+            "text": "What is the difference between Map and Object for storing key-value pairs?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Map can have any type as keys, Object only strings/symbols"
+                },
+                {
+                    "id": "b",
+                    "text": "Map preserves insertion order, Object doesn't"
+                },
+                {
+                    "id": "c",
+                    "text": "Map has better performance for frequent additions/deletions"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Map allows any type as keys (const m = new Map(); m.set(1, 'one');), preserves insertion order, and has better performance for frequent additions/deletions compared to Object."
+        },
+        {
+            "id": "js-15",
+            "text": "What is the output of the following code?\n\nconst arr = [1, 2, 3];\nconst proxy = new Proxy(arr, {\n  get(target, prop) {\n    return target[prop] * 2;\n  }\n});\nconsole.log(proxy[1]);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "2"
+                },
+                {
+                    "id": "b",
+                    "text": "4"
+                },
+                {
+                    "id": "c",
+                    "text": "1"
+                },
+                {
+                    "id": "d",
+                    "text": "NaN"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "The Proxy intercepts the get operation and multiplies the value by 2. arr[1] is 2, so 2 * 2 = 4."
+        },
+        {
+            "id": "js-16",
+            "text": "Which pattern does the following code demonstrate?\n\nfunction createCounter() {\n  let count = 0;\n  return function() {\n    return ++count;\n  };\n}\n\nconst counter = createCounter();\nconsole.log(counter()); // 1\nconsole.log(counter()); // 2",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Closure"
+                },
+                {
+                    "id": "b",
+                    "text": "Factory pattern"
+                },
+                {
+                    "id": "c",
+                    "text": "Module pattern"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "This code demonstrates a closure (inner function accessing outer variable), factory pattern (function creating and returning other functions), and module pattern (encapsulating state)."
+        },
+        {
+            "id": "js-17",
+            "text": "What is the output of the following code?\n\nconst sym1 = Symbol('key');\nconst sym2 = Symbol('key');\nconsole.log(sym1 === sym2);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "true"
+                },
+                {
+                    "id": "b",
+                    "text": "false"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Each Symbol() call creates a unique symbol, even with the same description. sym1 and sym2 are different symbols, so the comparison returns false."
+        },
+        {
+            "id": "js-18",
+            "text": "What is the purpose of Object.create() in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To create a new object with specified prototype"
+                },
+                {
+                    "id": "b",
+                    "text": "To copy an existing object"
+                },
+                {
+                    "id": "c",
+                    "text": "To clone an object deeply"
+                },
+                {
+                    "id": "d",
+                    "text": "To create an empty object"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Object.create() creates a new object with the specified prototype object. Example: const obj = Object.create(Array.prototype); creates an object that inherits from Array."
+        },
+        {
+            "id": "js-19",
+            "text": "What is the output of the following code?\n\nconst obj = { a: 1 };\nconst descriptor = Object.getOwnPropertyDescriptor(obj, 'a');\nconsole.log(descriptor.enumerable);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "true"
+                },
+                {
+                    "id": "b",
+                    "text": "false"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "When a property is created using object literal syntax, it is enumerable by default. Object.getOwnPropertyDescriptor() returns the property descriptor, and enumerable will be true."
+        },
+        {
+            "id": "js-20",
+            "text": "What is the difference between call(), apply(), and bind()?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "call() and apply() invoke immediately, bind() returns a new function"
+                },
+                {
+                    "id": "b",
+                    "text": "call() takes individual arguments, apply() takes an array"
+                },
+                {
+                    "id": "c",
+                    "text": "bind() sets 'this' permanently"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "call() and apply() invoke immediately (func.call(obj, arg1, arg2) vs func.apply(obj, [arg1, arg2])), while bind() returns a new function with 'this' bound permanently."
+        },
+        {
+            "id": "js-21",
+            "text": "What is the output of the following code?\n\nfunction Person(name) {\n  this.name = name;\n}\n\nPerson.prototype.greet = function() {\n  return `Hello, ${this.name}`;\n};\n\nconst john = new Person('John');\nconsole.log(john.hasOwnProperty('greet'));",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "true"
+                },
+                {
+                    "id": "b",
+                    "text": "false"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "The greet method is defined on Person.prototype, not on the john instance itself. hasOwnProperty() only returns true for properties directly on the object, not inherited properties."
+        },
+        {
+            "id": "js-22",
+            "text": "What is the purpose of the Reflect API in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To provide introspection capabilities"
+                },
+                {
+                    "id": "b",
+                    "text": "To intercept and customize operations on objects"
+                },
+                {
+                    "id": "c",
+                    "text": "To provide a more functional approach to object operations"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Reflect provides methods for interceptible JavaScript operations. Example: Reflect.get(obj, 'prop') instead of obj.prop, Reflect.has(obj, 'prop') instead of 'prop' in obj."
+        },
+        {
+            "id": "js-23",
+            "text": "What is the output of the following code?\n\nconst promise1 = Promise.resolve(1);\nconst promise2 = Promise.resolve(2);\nconst promise3 = Promise.reject(3);\n\nPromise.allSettled([promise1, promise2, promise3])\n  .then(results => {\n    console.log(results[2].status);\n  });",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "fulfilled"
+                },
+                {
+                    "id": "b",
+                    "text": "rejected"
+                },
+                {
+                    "id": "c",
+                    "text": "pending"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Promise.allSettled() waits for all promises to settle and returns their results. promise3 is rejected, so results[2].status will be 'rejected'."
+        },
+        {
+            "id": "js-24",
+            "text": "What is the difference between var, let, and const in terms of hoisting?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "var is hoisted and initialized, let/const are hoisted but not initialized"
+                },
+                {
+                    "id": "b",
+                    "text": "Only var is hoisted"
+                },
+                {
+                    "id": "c",
+                    "text": "All are hoisted equally"
+                },
+                {
+                    "id": "d",
+                    "text": "None are hoisted"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "var declarations are hoisted and initialized with undefined. let and const are hoisted but remain in a temporal dead zone until declared. Example: console.log(x); var x = 1; // undefined, not error"
+        },
+        {
+            "id": "js-25",
+            "text": "What is the output of the following code?\n\nclass Parent {\n  constructor() {\n    this.name = 'Parent';\n  }\n}\n\nclass Child extends Parent {\n  constructor() {\n    console.log(this.name);\n    super();\n  }\n}\n\nnew Child();",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Parent"
+                },
+                {
+                    "id": "b",
+                    "text": "undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "null"
+                },
+                {
+                    "id": "d",
+                    "text": "ReferenceError"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "In ES6 classes, you must call super() before accessing 'this' in a derived class constructor. Accessing 'this' before super() throws a ReferenceError."
+        },
+        {
+            "id": "js-26",
+            "text": "What is the purpose of the optional chaining operator (?.) in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To safely access nested object properties"
+                },
+                {
+                    "id": "b",
+                    "text": "To prevent TypeErrors when accessing undefined/null"
+                },
+                {
+                    "id": "c",
+                    "text": "To provide a shorter syntax for null checks"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Optional chaining (?.) safely accesses nested properties without throwing errors. Example: obj?.prop?.subProp returns undefined if any part is null/undefined instead of throwing TypeError."
+        },
+        {
+            "id": "js-27",
+            "text": "What is the output of the following code?\n\nconst obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;\nObject.assign(rest, { d: 4 });\nconsole.log(obj.d);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "4"
+                },
+                {
+                    "id": "b",
+                    "text": "undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "null"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "The rest operator creates a new object containing the remaining properties. Modifying 'rest' doesn't affect the original 'obj', so obj.d is undefined."
+        },
+        {
+            "id": "js-28",
+            "text": "What is the difference between == and === operators?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "== performs type coercion, === doesn't"
+                },
+                {
+                    "id": "b",
+                    "text": "=== checks both value and type"
+                },
+                {
+                    "id": "c",
+                    "text": "== can have unexpected results due to coercion"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "== performs type coercion (1 == '1' is true), while === checks strict equality without coercion (1 === '1' is false). === is generally preferred for predictable comparisons."
+        },
+        {
+            "id": "js-29",
+            "text": "What is the output of the following code?\n\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.reduce((acc, curr, index) => {\n  if (index % 2 === 0) {\n    acc.push(curr * 2);\n  }\n  return acc;\n}, []);\nconsole.log(result);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "[2, 6, 10]"
+                },
+                {
+                    "id": "b",
+                    "text": "[1, 3, 5]"
+                },
+                {
+                    "id": "c",
+                    "text": "[2, 4, 6, 8, 10]"
+                },
+                {
+                    "id": "d",
+                    "text": "[4, 8]"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The reduce function processes elements at even indices (0, 2, 4), which are values 1, 3, 5. These are doubled to get [2, 6, 10]."
+        },
+        {
+            "id": "js-30",
+            "text": "What is the purpose of the AbortController in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To cancel fetch requests"
+                },
+                {
+                    "id": "b",
+                    "text": "To abort asynchronous operations"
+                },
+                {
+                    "id": "c",
+                    "text": "To provide a standard cancellation mechanism"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "AbortController provides a way to abort asynchronous operations. Example: const controller = new AbortController(); fetch(url, { signal: controller.signal }); controller.abort();"
+        },
+        {
+            "id": "js-31",
+            "text": "What is the output of the following code?\n\nconst obj = {\n  name: 'John',\n  getName: function() {\n    return this.name;\n  }\n};\n\nconst getName = obj.getName;\nconsole.log(getName());",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "John"
+                },
+                {
+                    "id": "b",
+                    "text": "undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "null"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "When the method is assigned to a variable and called without an object context, 'this' refers to the global object (or undefined in strict mode), so this.name is undefined."
+        },
+        {
+            "id": "js-32",
+            "text": "What is the difference between forEach() and map() array methods?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "forEach() doesn't return anything, map() returns a new array"
+                },
+                {
+                    "id": "b",
+                    "text": "forEach() can modify the original array, map() doesn't"
+                },
+                {
+                    "id": "c",
+                    "text": "forEach() is synchronous, map() is asynchronous"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "forEach() doesn't return anything, map() returns a new array. forEach() can modify the original array, map() doesn't. forEach() is synchronous, map() is asynchronous."
         }
     ]
 }

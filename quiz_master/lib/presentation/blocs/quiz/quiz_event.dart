@@ -35,4 +35,11 @@ class PreviousQuestion extends QuizEvent {}
 
 class ShowExplanation extends QuizEvent {}
 
-class CompleteQuiz extends QuizEvent {} 
+class CompleteQuiz extends QuizEvent {
+  final String topicId;
+
+  const CompleteQuiz(this.topicId);
+
+  @override
+  List<Object?> get props => [topicId];
+} 

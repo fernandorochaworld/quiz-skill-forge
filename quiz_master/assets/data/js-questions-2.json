@@ -1,0 +1,526 @@
+{
+    "topic": "Advanced JavaScript - Memory Management & Performance",
+    "description": "Advanced JavaScript questions focusing on memory management, performance optimization, garbage collection, event loops, and efficient coding practices.",
+    "questions": [
+        {
+            "id": "js-2-1",
+            "subtopic": "Memory Management",
+            "text": "What is a memory leak in JavaScript and which of the following can cause it?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Global variables that are never cleared"
+                },
+                {
+                    "id": "b",
+                    "text": "Event listeners not properly removed"
+                },
+                {
+                    "id": "c",
+                    "text": "Circular references in closures"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "All mentioned scenarios can cause memory leaks: global variables persist throughout the application lifecycle, unremoved event listeners keep references alive, and circular references in closures prevent garbage collection."
+        },
+        {
+            "id": "js-2-2",
+            "subtopic": "Event Loop",
+            "text": "What is the output of the following code?\n\nconsole.log('1');\nsetTimeout(() => console.log('2'), 0);\nPromise.resolve().then(() => console.log('3'));\nconsole.log('4');",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "1, 4, 2, 3"
+                },
+                {
+                    "id": "b",
+                    "text": "1, 4, 3, 2"
+                },
+                {
+                    "id": "c",
+                    "text": "1, 2, 3, 4"
+                },
+                {
+                    "id": "d",
+                    "text": "1, 3, 4, 2"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Synchronous code executes first (1, 4), then microtasks like Promises (3), then macrotasks like setTimeout (2). This demonstrates the event loop priority queue."
+        },
+        {
+            "id": "js-2-3",
+            "subtopic": "Performance Optimization",
+            "text": "Which technique is most effective for optimizing repeated DOM queries?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Using getElementById instead of querySelector"
+                },
+                {
+                    "id": "b",
+                    "text": "Caching DOM references in variables"
+                },
+                {
+                    "id": "c",
+                    "text": "Using event delegation"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above are equally effective"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Caching DOM references prevents repeated DOM traversal. Example: const element = document.getElementById('myId'); // Cache once, use multiple times."
+        },
+        {
+            "id": "js-2-4",
+            "subtopic": "Garbage Collection",
+            "text": "What is the output of the following code after garbage collection?\n\nfunction createClosure() {\n  const largeData = new Array(1000000).fill('data');\n  return function() {\n    return 'Hello';\n  };\n}\n\nconst fn = createClosure();\n// Assume garbage collection happens here\nconsole.log(fn());",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Hello - largeData is garbage collected"
+                },
+                {
+                    "id": "b",
+                    "text": "Hello - largeData remains in memory"
+                },
+                {
+                    "id": "c",
+                    "text": "ReferenceError"
+                },
+                {
+                    "id": "d",
+                    "text": "Memory overflow error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Modern JavaScript engines can optimize closures by garbage collecting variables that aren't referenced by the returned function. Since largeData isn't used in the returned function, it can be collected."
+        },
+        {
+            "id": "js-2-5",
+            "subtopic": "WeakRef",
+            "text": "What is the primary use case for WeakRef in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Creating weak references to prevent memory leaks"
+                },
+                {
+                    "id": "b",
+                    "text": "Implementing caches that don't prevent garbage collection"
+                },
+                {
+                    "id": "c",
+                    "text": "Observing object lifecycle without affecting it"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "WeakRef allows holding a weak reference to an object without preventing garbage collection. Example: const ref = new WeakRef(object); const obj = ref.deref(); // May return undefined if GC'd"
+        },
+        {
+            "id": "js-2-6",
+            "subtopic": "Performance Optimization",
+            "text": "What is the most efficient way to remove multiple elements from a large array?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Using splice() in a loop"
+                },
+                {
+                    "id": "b",
+                    "text": "Using filter() to create a new array"
+                },
+                {
+                    "id": "c",
+                    "text": "Removing elements in reverse order with splice()"
+                },
+                {
+                    "id": "d",
+                    "text": "Using delete operator"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "Removing elements in reverse order with splice() is most efficient as it doesn't require shifting array indices. filter() creates a new array (memory overhead), and delete creates holes in the array."
+        },
+        {
+            "id": "js-2-7",
+            "subtopic": "Memory Management",
+            "text": "What is the output of the following code?\n\nfunction outer() {\n  let count = 0;\n  return {\n    increment: () => ++count,\n    getCount: () => count\n  };\n}\n\nconst counter1 = outer();\nconst counter2 = outer();\ncounter1.increment();\ncounter2.increment();\ncounter2.increment();\nconsole.log(counter1.getCount(), counter2.getCount());",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "1 2"
+                },
+                {
+                    "id": "b",
+                    "text": "2 2"
+                },
+                {
+                    "id": "c",
+                    "text": "3 3"
+                },
+                {
+                    "id": "d",
+                    "text": "1 1"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Each call to outer() creates a new closure with its own count variable. counter1 and counter2 maintain separate state, so counter1.count is 1 and counter2.count is 2."
+        },
+        {
+            "id": "js-2-8",
+            "subtopic": "Event Loop",
+            "text": "In the event loop, what is the correct order of execution priority?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Call stack → Microtasks → Macrotasks"
+                },
+                {
+                    "id": "b",
+                    "text": "Macrotasks → Microtasks → Call stack"
+                },
+                {
+                    "id": "c",
+                    "text": "Microtasks → Call stack → Macrotasks"
+                },
+                {
+                    "id": "d",
+                    "text": "Call stack → Macrotasks → Microtasks"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The event loop processes synchronous code (call stack) first, then all microtasks (Promises, queueMicrotask), then one macrotask (setTimeout, setInterval), and repeats."
+        },
+        {
+            "id": "js-2-9",
+            "subtopic": "Performance Optimization",
+            "text": "What is the benefit of using Object.freeze() on large configuration objects?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Prevents accidental mutations"
+                },
+                {
+                    "id": "b",
+                    "text": "Enables runtime optimizations"
+                },
+                {
+                    "id": "c",
+                    "text": "Reduces memory usage"
+                },
+                {
+                    "id": "d",
+                    "text": "Both a and b"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Object.freeze() prevents mutations and allows JavaScript engines to optimize property access since they know the object won't change. This can improve performance for frequently accessed objects."
+        },
+        {
+            "id": "js-2-10",
+            "subtopic": "Memory Management",
+            "text": "What is the difference between null and undefined in terms of memory?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "null explicitly releases memory, undefined doesn't"
+                },
+                {
+                    "id": "b",
+                    "text": "Both represent absence of value, no memory difference"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined uses more memory than null"
+                },
+                {
+                    "id": "d",
+                    "text": "null prevents garbage collection, undefined allows it"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "Both null and undefined represent absence of value and have similar memory footprints. Setting a reference to null is a way to explicitly indicate 'no value' and can help with garbage collection readability."
+        },
+        {
+            "id": "js-2-11",
+            "subtopic": "Performance Optimization",
+            "text": "What is the output and performance implication of the following code?\n\nconst arr = new Array(1000000);\nfor (let i = 0; i < arr.length; i++) {\n  arr[i] = i;\n}\nconsole.log(arr[500000]);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "500000 - Good performance due to pre-allocation"
+                },
+                {
+                    "id": "b",
+                    "text": "500000 - Poor performance due to sparse array"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined - Array not properly initialized"
+                },
+                {
+                    "id": "d",
+                    "text": "Error - Array too large"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "Pre-allocating arrays with new Array(size) can improve performance by avoiding multiple memory reallocations during growth. The output is 500000."
+        },
+        {
+            "id": "js-2-12",
+            "subtopic": "WeakMap Usage",
+            "text": "What is the primary advantage of using WeakMap for storing private data in objects?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Better performance than regular objects"
+                },
+                {
+                    "id": "b",
+                    "text": "Automatic cleanup when objects are garbage collected"
+                },
+                {
+                    "id": "c",
+                    "text": "More secure encryption of data"
+                },
+                {
+                    "id": "d",
+                    "text": "Faster property access"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "WeakMap entries are automatically removed when the key object is garbage collected, preventing memory leaks. Example: const privateData = new WeakMap(); privateData.set(obj, { secret: 'value' });"
+        },
+        {
+            "id": "js-2-13",
+            "subtopic": "Event Loop",
+            "text": "What happens when you have a very slow synchronous operation in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Other code runs in parallel"
+                },
+                {
+                    "id": "b",
+                    "text": "The entire application blocks until completion"
+                },
+                {
+                    "id": "c",
+                    "text": "The operation is automatically made asynchronous"
+                },
+                {
+                    "id": "d",
+                    "text": "The browser crashes"
+                }
+            ],
+            "correctAnswer": "b",
+            "explanation": "JavaScript is single-threaded, so synchronous operations block the entire application. This is why long-running tasks should be made asynchronous or use Web Workers."
+        },
+        {
+            "id": "js-2-14",
+            "subtopic": "Performance Optimization",
+            "text": "Which array method is most efficient for finding if at least one element meets a condition?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "filter().length > 0"
+                },
+                {
+                    "id": "b",
+                    "text": "find() !== undefined"
+                },
+                {
+                    "id": "c",
+                    "text": "some()"
+                },
+                {
+                    "id": "d",
+                    "text": "forEach() with a flag"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "some() is most efficient as it short-circuits on the first match. filter() processes all elements, find() stops on first match but returns the element (not boolean), forEach() can't break early without exceptions."
+        },
+        {
+            "id": "js-2-15",
+            "subtopic": "Memory Management",
+            "text": "What is the output of the following code?\n\nclass EventEmitter {\n  constructor() {\n    this.listeners = [];\n  }\n  \n  on(event, callback) {\n    this.listeners.push({ event, callback });\n  }\n  \n  off(event, callback) {\n    this.listeners = this.listeners.filter(l => \n      l.event !== event || l.callback !== callback\n    );\n  }\n}\n\nconst emitter = new EventEmitter();\nconst handler = () => console.log('handled');\nemitter.on('test', handler);\nemitter.off('test', handler);\nconsole.log(emitter.listeners.length);",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "0"
+                },
+                {
+                    "id": "b",
+                    "text": "1"
+                },
+                {
+                    "id": "c",
+                    "text": "undefined"
+                },
+                {
+                    "id": "d",
+                    "text": "Error"
+                }
+            ],
+            "correctAnswer": "a",
+            "explanation": "The listener is properly removed by the off() method since it uses the same function reference. The listeners array becomes empty, so length is 0."
+        },
+        {
+            "id": "js-2-16",
+            "subtopic": "Event Loop",
+            "text": "What is the purpose of queueMicrotask() in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "To schedule code to run before the next render"
+                },
+                {
+                    "id": "b",
+                    "text": "To add tasks to the microtask queue directly"
+                },
+                {
+                    "id": "c",
+                    "text": "To ensure code runs after current synchronous code"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "queueMicrotask() adds a task to the microtask queue, ensuring it runs after current synchronous code but before macrotasks and rendering. Example: queueMicrotask(() => console.log('microtask'));"
+        },
+        {
+            "id": "js-2-17",
+            "subtopic": "Performance Optimization",
+            "text": "What is the most efficient way to copy a large array in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Array.from(originalArray)"
+                },
+                {
+                    "id": "b",
+                    "text": "[...originalArray]"
+                },
+                {
+                    "id": "c",
+                    "text": "originalArray.slice()"
+                },
+                {
+                    "id": "d",
+                    "text": "All have similar performance"
+                }
+            ],
+            "correctAnswer": "c",
+            "explanation": "For large arrays, slice() is typically fastest as it's optimized for array copying. Spread operator has overhead for very large arrays, and Array.from() has additional function call overhead."
+        },
+        {
+            "id": "js-2-18",
+            "subtopic": "Memory Management",
+            "text": "What can cause a closure to retain more memory than expected?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Referencing outer scope variables not used in the inner function"
+                },
+                {
+                    "id": "b",
+                    "text": "Creating multiple nested functions within the closure"
+                },
+                {
+                    "id": "c",
+                    "text": "Using eval() within the closure"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "All these factors can prevent JavaScript engines from optimizing closures, causing them to retain the entire outer scope instead of just the referenced variables."
+        },
+        {
+            "id": "js-2-19",
+            "subtopic": "Performance Optimization",
+            "text": "What is the benefit of using typed arrays (Int32Array, Float64Array) in JavaScript?",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "Better memory efficiency"
+                },
+                {
+                    "id": "b",
+                    "text": "Faster arithmetic operations"
+                },
+                {
+                    "id": "c",
+                    "text": "Predictable memory layout"
+                },
+                {
+                    "id": "d",
+                    "text": "All of the above"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "Typed arrays store data in a fixed binary format, providing memory efficiency, faster operations (no boxing/unboxing), and predictable memory layout. Example: const buffer = new Int32Array(1000);"
+        },
+        {
+            "id": "js-2-20",
+            "subtopic": "Event Loop",
+            "text": "What is the output of the following code?\n\nsetTimeout(() => console.log('timeout1'), 0);\nsetImmediate(() => console.log('immediate1'));\nprocess.nextTick(() => console.log('nextTick1'));\nPromise.resolve().then(() => console.log('promise1'));\nconsole.log('sync1');",
+            "type": "multiple_choice",
+            "options": [
+                {
+                    "id": "a",
+                    "text": "sync1, nextTick1, promise1, immediate1, timeout1"
+                },
+                {
+                    "id": "b",
+                    "text": "sync1, promise1, nextTick1, timeout1, immediate1"
+                },
+                {
+                    "id": "c",
+                    "text": "sync1, timeout1, immediate1, nextTick1, promise1"
+                },
+                {
+                    "id": "d",
+                    "text": "This code only works in Node.js"
+                }
+            ],
+            "correctAnswer": "d",
+            "explanation": "This code includes Node.js-specific APIs (setImmediate, process.nextTick). In Node.js, the order would be: sync1, nextTick1, promise1, then timeout1/immediate1 depending on environment. In browsers, setImmediate and process.nextTick don't exist."
+        }
+    ]
+}
